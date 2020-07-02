@@ -1,4 +1,4 @@
-var parser = require('js-yaml')
+var parser = require('yaml')
 var optionalByteOrderMark = '\\ufeff?'
 var platform = typeof process !== 'undefined' ? process.platform : ''
 var pattern = '^(' +
@@ -59,7 +59,7 @@ function parse (string, allowUnsafe) {
     }
   }
 
-  var loader = allowUnsafe ? parser.load : parser.safeLoad
+  var loader = allowUnsafe ? parser.parse : parser.parse
   var yaml = match[match.length - 1].replace(/^\s+|\s+$/g, '')
   var attributes = loader(yaml) || {}
   var body = string.replace(match[0], '')
